@@ -1,11 +1,16 @@
 import os
+import streamlit as st
 from dotenv import load_dotenv
 
 # .env file එක load කිරීම
 load_dotenv()
-
-BINANCE_API_KEY = os.getenv("BINANCE_API_KEY", "")
-BINANCE_SECRET_KEY = os.getenv("BINANCE_SECRET_KEY", "")
+# Streamlit Cloud Secrets හෝ Environment Variables වලින් අගයන් ලබා ගැනීම
+try:
+    BINANCE_API_KEY = st.secrets.get("BINANCE_API_KEY", os.getenv("BINANCE_API_KEY", ""))
+    BINANCE_SECRET_KEY = st.secrets.get("BINANCE_SECRET_KEY", os.getenv("BINANCE_SECRET_KEY", ""))
+except Exception:
+    BINANCE_API_KEY = os.getenv("BINANCE_API_KEY", "")
+    BINANCE_SECRET_KEY = os.getenv("BINANCE_SECRET_KEY", "")
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")
 
