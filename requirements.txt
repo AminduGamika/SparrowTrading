@@ -6,3 +6,4 @@ python-binance
 SQLAlchemy
 plotly
 reportlab
+python-dotenv
